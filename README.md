@@ -54,8 +54,15 @@ Postgres cluster mkh-hydra-demo is now attached to mkh-hydra-demo-api
 The following secret was added to mkh-hydra-demo-api:
   DATABASE_URL=postgres://plone:...@mkh-hydra-demo.flycast:5432/plone?sslmode=disable
 
-$ fly secrets set RELSTORAGE_DSN="dbname='plone' user='plone' host='mkh-hydra-demo.flycast' password='...'"
+$ fly secrets set RELSTORAGE_DSN="dbname='plone' user='plone' host='pg-demo-db.flycast' password='...'"
 $ fly launch
+
+# At this point, log into the api using the default user and password
+# Go to /manage
+# Go to /acl_users and change your root admin password
+# Go to /virtual_hosting and add the following rule
+# pg-demo-api.fly.dev/VirtualHostBase/https/pg-demo-api.fly.dev/Plone/VirtualHostRoot/
+# The purpose is to hide the /Plone at the end of the url. For some reason volto doesn't act right with an api with /Plone in it.
 
 # Need to manually add VHM
 
